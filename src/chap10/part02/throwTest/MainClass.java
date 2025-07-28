@@ -1,5 +1,8 @@
 package chap10.part02.throwTest;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class MainClass {
 
 	public static void main(String[] args) {
@@ -23,6 +26,22 @@ public class MainClass {
 		}
 		
 		System.out.println("저는 10번 라인입니다.");
+		
+		DBTest dbTest = new DBTest();
+		
+		Connection conn = null;
+		try {
+			conn = dbTest.conn();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 }
